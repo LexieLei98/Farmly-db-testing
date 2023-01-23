@@ -3,7 +3,7 @@ const router = express.Router()
 const Model = require('../model/model');
 
 //Post Method
-router.post('/post', async(req, res) => {
+router.post('/api/farms', async(req, res) => {
     const data = new Model ({
         name: req.body.name,
         address: req.body.address,
