@@ -32,13 +32,34 @@ router.get('/getOne/:id', (req, res) => {
 })
 
 //Update by ID Method
-router.patch('/update/:id', (req, res) => {
-    res.send('Update by ID API')
+router.patch('/farms/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const updatedData = req.body
+        const options = { new: true }
+
+        const result = await Model.findByIdAndUpdate(
+            id, updatedData, options
+        )
+
+        res.send(result)
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message})
+    }
 })
 
 //Delete by ID Method
-router.delete('/delete/:id', (req, res) => {
-    res.send('Delete by ID API')
+router.delete('/farms/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const data = await Model.findByIdAndDelete(id)
+
+        res.send(`${data.name} has been deleted from the list of farms.`)
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message})
+    }
 })
 
 module.exports = router;
