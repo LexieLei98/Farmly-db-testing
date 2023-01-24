@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 
 /* Telling the server to use the routes in the ProductRoutes file. */
 app.use("/api", FarmRoutes);
-app.use("/api", handle500Error)
-app.all('*', handle404Routes);
+app.use(handle500Error)
+// app.all('*', handle404Routes);
 
 module.exports = app

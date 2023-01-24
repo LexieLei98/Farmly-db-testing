@@ -15,7 +15,7 @@ const postFarm = async(req, res) => {
         res.status(201).json(newFarm)
     }
     catch (error) {
-        res.status(500).json({message: error.message})
+        next(error)
     }
 }
 
@@ -26,7 +26,7 @@ const getFarms = async (req, res) => {
         res.json(data)
     }
     catch(error){
-        res.status(500).json({message: error.message})
+        next(error)
     }
 }
 
@@ -37,7 +37,7 @@ const getFarm = async (req, res) => {
         res.status(200).json(result)
     }
     catch(error){
-        res.status(500).json({message: error.message})
+        next(error)
     }
 }
 
@@ -49,7 +49,7 @@ const updateFarm = async (req, res) => {
         });
         res.status(200).json(farm);
       } catch (error) {
-        res.status(500).json({message: error.message});
+        next(error)
       }
 }
 
@@ -59,7 +59,7 @@ const deleteFarm = async (req, res) => {
         const farm = await Farm.findByIdAndDelete(req.params.id);
         res.status(200).json(farm);
       } catch (error) {
-        res.status(500).json({message: error.message});
+        next(error)
       }
 }
 
