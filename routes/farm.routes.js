@@ -20,5 +20,20 @@ const {
   router.patch("/farms/:id", updateFarm);
   
   router.delete("/farms/:id", deleteFarm);
+
+
+  // Produce Routes:
+
+  const {
+    getProduceById,
+    postProduce,
+  } = require("../controllers/produce.controller");
+  
+  
+  /* Creating the routes for the produce controller. */
+
+  
+  router.get("/produce/:produce_id", getProduceById);
+  router.post("/produce", postProduce);
   
   module.exports = router;

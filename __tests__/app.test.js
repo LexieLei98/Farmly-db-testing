@@ -175,7 +175,7 @@ beforeEach(async () => {
         })
     })
 
-    test.only('status:400 returns Bad Request when missing keys in the body', () => {
+    test('status:400 returns Bad Request when missing keys in the body', () => {
         const newFarm = {};
         return request(app)
         .post('/api/farms')
@@ -281,3 +281,48 @@ beforeEach(async () => {
         })
     })
 })
+
+// describe("PATCH /api/farms/:farm_id", () => {
+//     test("200: returns updated farm object", () => {
+//         const updateBody = { adress: {
+//                 "street": "Test Road",
+//                 "town": "Test Town",
+//                 "county": "Testland",
+//                 "postcode": "SW8 2JU",
+//                 "country": "Vietnam"
+//             }
+//         }
+//         return request(app)
+//         .patch("/api/farms/63d1043421db7451a6268498")
+//         .send(updateBody)
+//         .expect(200)
+//         .then(( {body } ) => {
+//             const farm = body.farm
+//             console.log(farm)
+//         })
+//     })
+// })
+
+// describe('GET /api/produce/:id', () => {
+//     test('status:200, returns the object of a specific farm', () => {
+//         const ID = 1;
+//         return request(app)
+//         .get(`/api/produce/${ID}`)
+//         .expect(200)
+//         .then(({body}) => {
+//             console.log(body)
+//             body.forEach((produce) => {
+//                 expect.objectContaining({
+//                     "name": expect.any(String),
+//                     "category": expect.any(String),
+//                     "stock": expect.any(Number),
+//                     "price": expect.any(Number),
+//                     "unit":expect.any(String),
+//                     "description": expect.any(String),
+//                     "farm_id": 1,
+//                     "produce_id":expect.any(Number),
+//                 })
+//             })
+//         })
+//     })
+// })
