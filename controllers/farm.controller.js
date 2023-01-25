@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 const Farm = require('../models/farm.model');
 
 //Post Method
@@ -33,7 +34,7 @@ const getFarms = async (req, res, next) => {
 //Get by ID Method
 const getFarm = async (req, res, next) => {
     try{
-        const farm = await Farm.findById(req.params.id)
+        const farm = await Farm.find({farm_id: req.params.id})
         res.status(200).json(result)
     }
     catch(error){
