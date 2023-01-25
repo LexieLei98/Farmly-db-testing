@@ -13,12 +13,12 @@ const {
   /* Creating the routes for the product controller. */
   router.get("/farms", getFarms);
   
-  router.get("/farms/:id", getFarm);
+  router.get("/farms/:farm_id", getFarm);
   
   router.post("/farms", postFarm);
   
-  router.patch("/farms/:id", updateFarm);
+  router.patch("/farms/:farm_id", updateFarm);
   
-  router.delete("/farms/:id", deleteFarm);
+  router.delete("/farms/:farm_id", deleteFarm);
   
   module.exports = router;

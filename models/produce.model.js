@@ -22,7 +22,12 @@ const produceSchema = new mongoose.Schema({
         type: String},
     farm_id: {
         required: true,
-        type: Number}
+        type: Number
+    },
+    produce_id: {
+        required: false,
+        type: Number
+    }
 })
 
 module.exports = mongoose.model('Produce', produceSchema)
