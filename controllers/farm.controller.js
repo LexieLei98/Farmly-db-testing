@@ -35,10 +35,13 @@ const getFarms = async (req, res, next) => {
 const getFarm = async (req, res, next) => {
     try{
         const farm = await Farm.find({farm_id: req.params.id})
-        res.status(200).json(farm[0])
+        if(farm.length === 0){
+            return res.status(404).send({msg: 'Not Found!'})
+        }
+        return res.status(200).json(farm[0])
     }
     catch(error){
-        next(error)
+       next(error)
     }
 }
 
