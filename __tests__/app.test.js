@@ -300,26 +300,110 @@ beforeEach(async () => {
 //     })
 // })
 
-// describe('GET /api/produce/:id', () => {
-//     test('status:200, returns the object of a specific farm', () => {
-//         const ID = 1;
-//         return request(app)
-//         .get(`/api/produce/${ID}`)
-//         .expect(200)
-//         .then(({body}) => {
-//             console.log(body)
-//             body.forEach((produce) => {
-//                 expect.objectContaining({
-//                     "name": expect.any(String),
-//                     "category": expect.any(String),
-//                     "stock": expect.any(Number),
-//                     "price": expect.any(Number),
-//                     "unit":expect.any(String),
-//                     "description": expect.any(String),
-//                     "farm_id": 1,
-//                     "produce_id":expect.any(Number),
-//                 })
-//             })
-//         })
-//     })
-// })
+describe('GET /api/produce', () => {
+    test('status:200, returns the array of farms objects', () => {
+        return request(app)
+        .get('/api/produce')
+        .expect(200)
+        .then(({body}) => {
+            console.log(body,"30999")
+            expect(body).toBeInstanceOf(Array)
+            expect(body).toHaveLength(7);
+            body.forEach((produce) => {
+                expect.objectContaining({
+                    name: expect.any(String),
+                    address: expect.any(Object),
+                    description: expect.any(String),
+                    profile_pic: expect.any(String),
+                    rating: expect.any(Array),
+                    produce: expect.any(Array),
+                    produce_id: expect.any(Number),
+                    farm_id: expect.any(Number),
+                })
+            })
+        })
+})
+})
+
+describe('GET /api/produce/:produce_id', () => {
+    test('status:200, returns the object of a specific farm', () => {
+        const PRODUCE_ID = 1;
+        return request(app)
+        .get(`/api/produce/${PRODUCE_ID}`)
+        .expect(200)
+        .then(({body}) => {
+            expect(body[0]).toEqual(
+                expect.objectContaining({
+                    "name":"Pink Lady Apples",
+                    "category": "fruits",
+                    "stock": 10,
+                    "price": 5,
+                    "unit":"300g",
+                    "description": "nice juicy dont miss out",
+                    "farm_id": 1,
+                    "produce_id": 1,
+                })
+     
+        )
+    })
+})
+test('status:400, returns the bad request message when farm id is not vaild', () => {
+    return request(app)
+    .get('/api/produce/snow')
+    .expect(400)
+    .then((res) => {
+        expect(res.body.msg).toBe('Bad Request!')
+    })
+})
+
+test('status:404, returns the bad request message when farm id is vaild but no data for this farm', () => {
+    return request(app)
+    .get('/api/produce/999')
+    .expect(404)
+    .then((res) => {
+        expect(res.body.msg).toBe('Not Found!')
+    })
+})
+}
+)
+describe('POST /api/produce', () => {
+    test('status:201 returns posted produce', () => {
+        const newProduce = {
+            "name":"broccoli",
+            "category": "vegetables",
+            "stock": 12,
+            "price": 1.2,
+            "unit":"300g",
+            "description": "nice veg dont miss out",
+            "farm_id": 2,
+            "produce_id": 8,
+        }
+        return request(app)
+        .post('/api/produce')
+        .send(newProduce)
+        .expect(201)
+        .then(({body}) => {
+            expect(body).toMatchObject({
+                "name":"broccoli",
+                "category": "vegetables",
+                "stock": 12,
+                "price": 1.2,
+                "unit":"300g",
+                "description": "nice veg dont miss out",
+                "farm_id": 2,
+                "produce_id": 8,
+            })
+        })
+    })
+
+    test('status:400 returns Bad Request when missing keys in the body', () => {
+        const newProduce = {};
+        return request(app)
+        .post('/api/produce')
+        .send(newProduce)
+        .expect(400)
+        .then(({body}) => {
+            expect(body.msg).toBe('Bad Request!')
+        })
+    })
+})
