@@ -13,12 +13,27 @@ const {
   /* Creating the routes for the product controller. */
   router.get("/farms", getFarms);
   
-  router.get("/farms/:farm_id", getFarm);
+  router.get("/farms/:id", getFarm);
   
   router.post("/farms", postFarm);
   
-  router.patch("/farms/:farm_id", updateFarm);
+  router.patch("/farms/:id", updateFarm);
   
-  router.delete("/farms/:farm_id", deleteFarm);
+  router.delete("/farms/:id", deleteFarm);
+
+
+  // Produce Routes:
+
+  const {
+    getProduceById,
+    postProduce,
+  } = require("../controllers/produce.controller");
+  
+  
+  /* Creating the routes for the produce controller. */
+
+  
+  router.get("/produce/:produce_id", getProduceById);
+  router.post("/produce", postProduce);
   
   module.exports = router;
