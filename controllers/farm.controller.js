@@ -1,7 +1,7 @@
 const Farm = require('../models/farm.model');
 
 //Post Method
-const postFarm = async(req, res) => {
+const postFarm = async(req, res, next) => {
     // const data = new Farm ({
     //     name: req.body.name,
     //     address: req.body.address,
@@ -20,7 +20,7 @@ const postFarm = async(req, res) => {
 }
 
 //Get all Method
-const getFarms = async (req, res) => {
+const getFarms = async (req, res, next) => {
     try{
         const data = await Farm.find();
         res.json(data)
@@ -31,7 +31,7 @@ const getFarms = async (req, res) => {
 }
 
 //Get by ID Method
-const getFarm = async (req, res) => {
+const getFarm = async (req, res, next) => {
     try{
         const farm = await Farm.findById(req.params.id)
         res.status(200).json(result)
@@ -42,7 +42,7 @@ const getFarm = async (req, res) => {
 }
 
 //Update by ID Method
-const updateFarm = async (req, res) => {
+const updateFarm = async (req, res, next) => {
     try {
         const farm = await Farm.findByIdAndUpdate(req.params.id, req.body, {
           new: true,
@@ -54,7 +54,7 @@ const updateFarm = async (req, res) => {
 }
 
 //Delete by ID Method
-const deleteFarm = async (req, res) => {
+const deleteFarm = async (req, res, next) => {
     try {
         const farm = await Farm.findByIdAndDelete(req.params.id);
         res.status(200).json(farm);
