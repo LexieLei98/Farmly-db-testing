@@ -21,6 +21,10 @@ const farmSchema = new mongoose.Schema({
     rating: {
         required: true,
         type: Array
+    },
+    farm_id: {
+        required: false,
+        type: Number
     }
 })
 
