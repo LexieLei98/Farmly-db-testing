@@ -21,11 +21,7 @@ const farmSchema = new mongoose.Schema({
     rating: {
         required: true,
         type: Array
-    },
-    produce: {
-        required: true,
-        type: Array
-    },
+    }
 })
 
 module.exports = mongoose.model('Farms', farmSchema)
