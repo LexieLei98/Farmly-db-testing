@@ -175,14 +175,13 @@ beforeEach(async () => {
         })
     })
 
-    test.only('status:400 returns Bad Request when missing keys in the body', () => {
+    test('status:400 returns Bad Request when missing keys in the body', () => {
         const newFarm = {};
         return request(app)
         .post('/api/farms')
         .send(newFarm)
         .expect(400)
         .then(({body}) => {
-            console.log(body, "this is bodyyyyy")
             expect(body.msg).toBe('Bad Request!')
         })
     })
@@ -262,9 +261,8 @@ beforeEach(async () => {
     })
 
     test('status:400, returns the bad request message when farm id is not vaild', () => {
-        const ID = '63d0f7ac8117b5e';
         return request(app)
-        .get(`/api/farms/${ID}`)
+        .get('/api/farms/snow')
         .expect(400)
         .then((res) => {
             expect(res.body.msg).toBe('Bad Request!')
@@ -272,12 +270,11 @@ beforeEach(async () => {
     })
 
     test('status:404, returns the bad request message when farm id is vaild but no data for this farm', () => {
-        const ID = '63d0f7ac8117b5e4bdbd00ch';
         return request(app)
-        .get(`/api/farms/${ID}`)
+        .get('/api/farms/999')
         .expect(404)
         .then((res) => {
-            expect(res.body.msg).toBe('Not found!')
+            expect(res.body.msg).toBe('Not Found!')
         })
     })
 })
