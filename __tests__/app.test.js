@@ -323,3 +323,30 @@ beforeEach(async () => {
 //         })
 //     })
 // })
+
+
+describe.only('DELETE /api/farms/:farm_id', () => {
+    test('status:204 responds with an empty response body', () => {
+        return request(app)
+        .delete('/api/farms/1')
+        .expect(204)
+    })
+
+    test('status:404 returns Bad Request when the farm id is vaild but no data to this farm', () => {
+        return request(app)
+        .delete('/api/farms/999')
+        .expect(404)
+        .then((res) => {
+            expect(res.body.msg).toBe('Not Found!')
+        })
+    })
+
+    test('status:400 returns Bad Request when the farm id is invaild', () => {
+        return request(app)
+        .delete('/api/farms/snow')
+        .expect(400)
+        .then((res) => {
+            expect(res.body.msg).toBe('Bad Request!')
+        })
+    })
+})
