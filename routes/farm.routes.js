@@ -46,7 +46,8 @@ const {
 
   const {
     postUser,
-    updateUser
+    postUser,
+    deleteUser,
   } = require('../controllers/user.controller')
 
 
@@ -55,5 +56,6 @@ const {
   router.post('/users', postUser)
   router.patch('/users/:id', updateUser)
 
+  router.delete('/user/:id', deleteUser)
   
   module.exports = router;

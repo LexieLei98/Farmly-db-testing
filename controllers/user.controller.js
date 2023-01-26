@@ -13,20 +13,20 @@ const postUser = async(req, res, next) => {
 }
 
 
-// const getUsers = async (req, res, next) => {
-//     try{
-//         const data = await User.find();
-//         res.json(data)
-//     }
-//     catch(error){
-//         next(error)
-//     }
-// }
+const getUsers = async (req, res, next) => {
+    try{
+        const data = await User.find();
+        res.json(data)
+    }
+    catch(error){
+        next(error)
+    }
+}
 
 //Update by ID Method
 const updateUser = async (req, res, next) => {
     try {
-        const userFind = await User.find({user_id: req.params.id})
+  const userFind = await User.find({farm_id: req.params.id})
         if(userFind.length === 0){
             return res.status(404).send({msg: 'Not Found!'})
         }
@@ -41,13 +41,30 @@ const updateUser = async (req, res, next) => {
         );
       
         res.status(200).json(user);
-    } catch (error) {
+      } catch (error) {
         next(error)
-    }
+      }
 }
 
+
+//Delete by ID Method
+const deleteUser = async (req, res, next) => {
+    try {
+        const user1 = await User.find({user_id: req.params.id})
+        const deleteUser = await User.findOneAndDelete({user_id: req.params.id});
+        if(user1.length === 0){
+            return res.status(404).send({msg: 'Not Found!'})
+        }
+        res.status(204).json(user1);
+      } catch (error) {
+        next(error)
+      }
+}
+
+
 module.exports = {
-    // getUsers,
+    getUsers,
     postUser,
-    updateUser
+    updateUser,
+    deleteUser,
   };

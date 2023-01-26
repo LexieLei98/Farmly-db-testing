@@ -717,6 +717,30 @@ describe('POST /api/users', () => {
     })
 })
 
+
+describe('DELETE /api/user/:user_id', () => {
+    test('status:204 responds with an empty response body', () => {
+        return request(app)
+        .delete('/api/user/1')
+        .expect(204)
+    })
+
+    test('status:404 returns Bad Request when the user id is vaild but no data to this farm', () => {
+        return request(app)
+        .delete('/api/user/9999')
+        .expect(404)
+        .then((res) => {
+            expect(res.body.msg).toBe('Not Found!')
+        })
+    })
+
+    test('status:400 returns Bad Request when the user id is invaild', () => {
+        return request(app)
+        .delete('/api/user/snow')
+        .expect(400)
+        .then((res) => {
+            expect(res.body.msg).toBe('Bad Request!')
+
 describe("PATCH /api/users/:user_id", () => {
     test("200: returns an updated user object", () => {
         const ID = 1
@@ -798,6 +822,7 @@ describe("PATCH /api/users/:user_id", () => {
         .expect(400)
         .then(( {body } ) => {
             expect(body.msg).toBe("Bad Request!")
+
         })
     })
 })
