@@ -279,26 +279,148 @@ beforeEach(async () => {
     })
 })
 
-// describe("PATCH /api/farms/:farm_id", () => {
-//     test("200: returns updated farm object", () => {
-//         const updateBody = { adress: {
-//                 "street": "Test Road",
-//                 "town": "Test Town",
-//                 "county": "Testland",
-//                 "postcode": "SW8 2JU",
-//                 "country": "Vietnam"
-//             }
-//         }
-//         return request(app)
-//         .patch("/api/farms/63d1043421db7451a6268498")
-//         .send(updateBody)
-//         .expect(200)
-//         .then(( {body } ) => {
-//             const farm = body.farm
-//             console.log(farm)
-//         })
-//     })
-// })
+  describe("PATCH /api/farms/:farm_id", () => {
+    test("200: returns updated farm object, with nested object", () => {
+        const ID = 1
+        const updateBody = { 
+            address: {
+                street: "Test Road",
+                town: "Test Town",
+                county: "Testland",
+                postcode: "SW8 2JU",
+                country: "Vietnam"
+            }
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                address: {
+                    street: "Test Road",
+                    town: "Test Town",
+                    county: "Testland",
+                    postcode: "SW8 2JU",
+                    country: "Vietnam"
+                }
+            }))
+        })
+    })
+    test("200: returns updated farm object, patched with 1 nested key value pair", () => {
+        const ID = 1
+        const updateBody = { 
+            address: {
+                street: "Test Road",
+            }
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                address: {
+                    street: "Test Road",
+                }
+            }))
+        })
+    })
+    test("200: returns updated farm object", () => {
+        const ID = 1
+        const updateBody = { 
+            name: "Josh new farm",
+            address: {
+                street: "Test Road",
+                town: "Test Town",
+                county: "Testland",
+                postcode: "SW8 2JU",
+                country: "Vietnam"
+            }
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                name: "Josh new farm",
+                address: {
+                    street: "Test Road",
+                    town: "Test Town",
+                    county: "Testland",
+                    postcode: "SW8 2JU",
+                    country: "Vietnam"
+                }
+            }))
+        })
+    })
+    test("200: returns updated farm object, with 2 key value pairs", () => {
+        const ID = 1
+        const updateBody = { 
+            name: "Josh new farm" 
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                name: "Josh new farm"
+            }))
+        })
+    })
+    test("404: id not found",() => {
+        const ID = 99999
+        const updateBody = { 
+            name: "Josh new farm" 
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(404)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Not Found!")
+        })
+    })
+    test("400: non valid idea not found",() => {
+        const ID = test
+        const updateBody = { 
+            name: "Josh new farm" 
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(400)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    })
+    test("400: invalid key", () => {
+        const ID = 1
+        const updateBody = { 
+            HEHEHEHE: "Josh new farm" 
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(400)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    })
+    test("400: empty body", () => {
+        const ID = 1
+        const updateBody = {}
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(400)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    })
+})
 
 
 describe('DELETE /api/farms/:farm_id', () => {
