@@ -21,6 +21,6 @@ app.use("/api", FarmRoutes);
 app.use(handleCustomErrors)
 app.use(handleOtherErrors)
 app.use(handle500Error)
-app.all('*', handle404Errors);
+// app.all('*', handle404Errors);
 
 module.exports = app

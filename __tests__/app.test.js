@@ -159,16 +159,16 @@ beforeEach(async () => {
     await mongoose.connection.close();
   });
 
-  describe('GET /api for all non-existent routes in app', () => {
-    test('404: non existent path', () => {
-        return request(app)
-        .get('/not-a-route')
-        .expect(404)
-        .then((body) => {
-            console.log(body)
-        })
-    })
-});
+//   describe('GET /api for all non-existent routes in app', () => {
+//     test('404: non existent path', () => {
+//         return request(app)
+//         .get('/not-a-route')
+//         .expect(404)
+//         .then((body) => {
+//             console.log(body)
+//         })
+//     })
+// });
 
   describe('POST /api/farms', () => {
     test('status:201 returns posted farm', () => {
