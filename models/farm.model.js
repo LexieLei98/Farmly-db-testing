@@ -1,3 +1,4 @@
+const { Decimal128 } = require('mongodb');
 const mongoose = require('mongoose');
 
 //creating a new folder in the database
@@ -24,6 +25,10 @@ const farmSchema = new mongoose.Schema({
     },
     farm_id: {
         required: false,
+        type: Number
+    },
+    distance_from_location: {
+        required: true,
         type: Number
     }
 })

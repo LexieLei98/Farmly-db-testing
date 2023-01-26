@@ -18,7 +18,8 @@ const seedFarms = [
         "description": "We are a small farm specialising in fresh, quality produce for our customers. We mainly grow outdoor fruit. The majority of our produce is sold ready picked, direct to the public from our shop along with a selection of locally grown fresh vegetables.",
         "profile_pic": "http://www.chyreenfruitfarm.co.uk/web_logo.gif",
         "rating": [],
-        "farm_id":1
+        "farm_id":1,
+        "distance_from_location": 0
     },
     {
         "name": "Hewitts Farm",
@@ -32,7 +33,8 @@ const seedFarms = [
         "description": "Hewitts Farm is a family run business set in 78 acres, just outside of Orpington, Kent. We grow a wide variety of fruits and vegetables for 'Pick your own' and also have a large selection for sale throughout the year in our farm shop.",
         "profile_pic": "https://lirp.cdn-website.com/3f2c01d3/dms3rep/multi/opt/image0-410w.jpeg",
         "rating": [],
-        "farm_id":2
+        "farm_id":2,
+        "distance_from_location": 0
     },
     {
         "name": "Stanhill Farm",
@@ -46,7 +48,8 @@ const seedFarms = [
         "description": "The Farm harvests wheat and a number of different fruit and vegetables; around 20-30 varieties each year. ",
         "profile_pic": "https://www.stanhillfarm.co.uk/sites/all/themes/stanhill/logo.png?bnew",
         "rating": [],
-        "farm_id":3
+        "farm_id":3,
+        "distance_from_location": 0
     }
 ]
 
@@ -151,7 +154,8 @@ beforeEach(async () => {
             "description": "We are a small farm specialising in fresh, quality produce for our customers. We mainly grow outdoor fruit. The majority of our produce is sold ready picked, direct to the public from our shop along with a selection of locally grown fresh vegetables.",
             "profile_pic": "http://www.chyreenfruitfarm.co.uk/web_logo.gif",
             "rating": [],
-            "farm_id": 10
+            "farm_id": 10,
+            "distance_from_location": 0
         }
         return request(app)
         .post('/api/farms')
@@ -170,7 +174,8 @@ beforeEach(async () => {
                 "description": "We are a small farm specialising in fresh, quality produce for our customers. We mainly grow outdoor fruit. The majority of our produce is sold ready picked, direct to the public from our shop along with a selection of locally grown fresh vegetables.",
                 "profile_pic": "http://www.chyreenfruitfarm.co.uk/web_logo.gif",
                 "rating": [],
-                "farm_id": 10
+                "farm_id": 10,
+                "distance_from_location": 0
             })
         })
     })
