@@ -23,31 +23,31 @@ const postUser = async(req, res, next) => {
 //     }
 // }
 
-// //Update by ID Method
-// const updateUser = async (req, res, next) => {
-//     try {
-//         const userFind = await User.find({farm_id: req.params.id})
-//         if(userFind.length === 0){
-//             return res.status(404).send({msg: 'Not Found!'})
-//         }
-//         if(!(Object.getOwnPropertyNames(userFind[0].toJSON())).includes(Object.keys(req.body)[0])) {
-//             return res.status(400).send({msg: 'Bad Request!'})
-//         }
+//Update by ID Method
+const updateUser = async (req, res, next) => {
+    try {
+        const userFind = await User.find({user_id: req.params.id})
+        if(userFind.length === 0){
+            return res.status(404).send({msg: 'Not Found!'})
+        }
+        if(!(Object.getOwnPropertyNames(userFind[0].toJSON())).includes(Object.keys(req.body)[0])) {
+            return res.status(400).send({msg: 'Bad Request!'})
+        }
 
-//         const user = await User.findOneAndUpdate(
-//             { user_id: req.params.id },
-//             { $set: req.body },
-//             { new: true }
-//         );
+        const user = await User.findOneAndUpdate(
+            { user_id: req.params.id },
+            { $set: req.body },
+            { new: true }
+        );
       
-//         res.status(200).json(user);
-//       } catch (error) {
-//         next(error)
-//       }
-// }
+        res.status(200).json(user);
+    } catch (error) {
+        next(error)
+    }
+}
 
 module.exports = {
     // getUsers,
-    postUser
-    // updateUser,
+    postUser,
+    updateUser
   };
