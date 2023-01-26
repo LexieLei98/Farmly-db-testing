@@ -27,6 +27,8 @@ const {
   const {
     getProduceById,
     postProduce,
+    patchProduceById,
+    deleteProduce
   } = require("../controllers/produce.controller");
   
   
@@ -35,5 +37,6 @@ const {
   
   router.get("/produce/:produce_id", getProduceById);
   router.post("/produce", postProduce);
-  
+  router.patch("/produce/:id", patchProduceById);
+  router.delete("/produce/:id", deleteProduce);
   module.exports = router;
