@@ -3,6 +3,7 @@ const request = require("supertest");
 const app = require("../app");
 const Farm = require("../models/farm.model")
 const Produce = require('../models/produce.model')
+const User = require('../models/user.model')
 require("dotenv").config();
 
 const seedFarms = [
@@ -124,15 +125,33 @@ const seedProduce = [{
     "produce_id": 7,
 }]
 
-
+const seedUsers = [{
+      "username": 'farmlee@gmail.com',
+      "postcode":"E14 5GL",
+      "type": "Farmer",
+      "profile_pic":"https://static.vecteezy.com/system/resources/previews/011/030/440/original/carrot-cartoon-character-png.png",
+      "password": "farm123",
+      "user_id": 1
+    },
+    {
+        "username": 'userlee@gmail.com',
+        "postcode":"SW8 2JU",
+        "type": "User",
+        "profile_pic":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "password": "user123",
+        "user_id": 2
+      }
+]
 
 /* Connecting to the database before each test. */
 beforeEach(async () => {
     await mongoose.connect('mongodb://localhost:27017/test');
     await Farm.deleteMany({});
     await Produce.deleteMany({});
+    await User.deleteMany({});
     await Farm.insertMany(seedFarms);
     await Produce.insertMany(seedProduce);
+    await User.insertMany(seedUsers);
   });
   
   /* Closing database connection after each test. */
@@ -668,6 +687,33 @@ describe('POST /api/produce', () => {
         .expect(400)
         .then(({body}) => {
             expect(body.msg).toBe('Bad Request!')
+        })
+    })
+})
+
+describe.only('POST /api/users', () => {
+    test('status 201 returns posted user', () => {
+        const newUser = {
+            "username": 'farmlee@gmail.com',
+            "postcode":"E14 5GL",
+            "type": "Farmer",
+            "profile_pic":"https://static.vecteezy.com/system/resources/previews/011/030/440/original/carrot-cartoon-character-png.png",
+            "password": "farm123",
+            "user_id": 4
+          }
+        return request(app)
+        .post('/api/users')
+        .send(newUser)
+        .expect(201)
+        .then(({body}) => {
+            expect(body).toMatchObject({
+                "username": 'farmlee@gmail.com',
+                "postcode":"E14 5GL",
+                "type": "Farmer",
+                "profile_pic":"https://static.vecteezy.com/system/resources/previews/011/030/440/original/carrot-cartoon-character-png.png",
+                "password": "farm123",
+                "user_id": 4
+              })
         })
     })
 })

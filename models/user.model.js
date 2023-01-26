@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         required: true,
-        type: Array
+        type: String
+    },
+    user_id: {
+        required: false,
+        type: Number  
     }
 })
 

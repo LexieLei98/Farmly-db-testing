@@ -41,4 +41,17 @@ const {
   router.patch("/produce/:id", patchProduceById);
   router.delete("/produce/:id", deleteProduce);
   
+
+  //Users Routes 
+
+  const {
+    postUser 
+  } = require('../controllers/user.controller')
+
+
+  //Creating the routes for the users controllers
+
+  router.post('/users', postUser)
+
+  
   module.exports = router;
