@@ -45,13 +45,15 @@ const {
   //Users Routes 
 
   const {
-    postUser 
+    postUser,
+    getUsers
   } = require('../controllers/user.controller')
 
 
   //Creating the routes for the users controllers
 
   router.post('/users', postUser)
+  router.get('/users', getUsers)
 
   
   module.exports = router;
