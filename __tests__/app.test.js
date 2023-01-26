@@ -691,7 +691,7 @@ describe('POST /api/produce', () => {
     })
 })
 
-describe.only('POST /api/users', () => {
+describe('POST /api/users', () => {
     test('status 201 returns posted user', () => {
         const newUser = {
             "username": 'farmlee@gmail.com',
@@ -714,6 +714,32 @@ describe.only('POST /api/users', () => {
                 "password": "farm123",
                 "user_id": 4
               })
+        })
+    })
+})
+
+describe('DELETE /api/user/:user_id', () => {
+    test('status:204 responds with an empty response body', () => {
+        return request(app)
+        .delete('/api/user/1')
+        .expect(204)
+    })
+
+    test('status:404 returns Bad Request when the user id is vaild but no data to this farm', () => {
+        return request(app)
+        .delete('/api/user/9999')
+        .expect(404)
+        .then((res) => {
+            expect(res.body.msg).toBe('Not Found!')
+        })
+    })
+
+    test('status:400 returns Bad Request when the user id is invaild', () => {
+        return request(app)
+        .delete('/api/user/snow')
+        .expect(400)
+        .then((res) => {
+            expect(res.body.msg).toBe('Bad Request!')
         })
     })
 })

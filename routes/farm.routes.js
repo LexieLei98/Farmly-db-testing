@@ -45,7 +45,8 @@ const {
   //Users Routes 
 
   const {
-    postUser 
+    postUser,
+    deleteUser,
   } = require('../controllers/user.controller')
 
 
@@ -53,5 +54,6 @@ const {
 
   router.post('/users', postUser)
 
+  router.delete('/user/:id', deleteUser)
   
   module.exports = router;
