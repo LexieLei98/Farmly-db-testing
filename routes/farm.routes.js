@@ -45,13 +45,15 @@ const {
   //Users Routes 
 
   const {
-    postUser 
+    postUser,
+    updateUser
   } = require('../controllers/user.controller')
 
 
   //Creating the routes for the users controllers
 
   router.post('/users', postUser)
+  router.patch('/users/:id', updateUser)
 
   
   module.exports = router;
