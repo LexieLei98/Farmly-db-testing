@@ -159,6 +159,17 @@ beforeEach(async () => {
     await mongoose.connection.close();
   });
 
+  describe('GET /api for all non-existent routes in app', () => {
+    test('404: non existent path', () => {
+        return request(app)
+        .get('/not-a-route')
+        .expect(404)
+        .then((body) => {
+            console.log(body)
+        })
+    })
+});
+
   describe('POST /api/farms', () => {
     test('status:201 returns posted farm', () => {
         const newFarm = {
@@ -715,6 +726,29 @@ describe('POST /api/users', () => {
               })
         })
     })
+})
+
+describe('GET /api/users', () => {
+    test('status:200, returns the array of users', () => {
+        return request(app)
+        .get('/api/users')
+        .expect(200)
+        .then(({body}) => {
+            expect(body).toBeInstanceOf(Array)
+            expect(body).toHaveLength(2);
+            body.forEach((user) => {
+                expect.objectContaining({
+                    username: expect.any(String),
+                    postcode: expect.any(String),
+                    type: expect.any(String),
+                    profile_pic: expect.any(String),
+                    password: expect.any(String),
+                    user_id: expect.any(Number),
+                })
+            })
+        })
+    })
+
 
 
     test('status: 400 returns Bad Request when missing keys in the body', () => {

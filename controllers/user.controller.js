@@ -15,13 +15,15 @@ const postUser = async(req, res, next) => {
 
 const getUsers = async (req, res, next) => {
     try{
-        const data = await User.find();
-        res.json(data)
+        const users = await User.find();
+        res.status(200).json(users)
     }
     catch(error){
         next(error)
     }
 }
+
+
 
 //Update by ID Method
 const updateUser = async (req, res, next) => {
