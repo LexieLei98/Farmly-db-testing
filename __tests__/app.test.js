@@ -279,6 +279,117 @@ beforeEach(async () => {
     })
 })
 
+describe('PATCH /api/produce/:id', () => {
+    test('200: responds with newly updated produce', () => {
+        const ID = 1;
+        return request(app)
+        .patch(`/api/produce/${ID}`)
+        .send({"price": 6})
+        .expect(200)
+        .then(({body}) => {
+            expect(body).toEqual(
+                expect.objectContaining({
+                    "name": expect.any(String),
+                    "category": expect.any(String),
+                    "stock": expect.any(Number),
+                    "price": 6,
+                    "unit":expect.any(String),
+                    "description": expect.any(String),
+                    "farm_id": expect.any(Number),
+                    "produce_id": 1,
+                })
+            )
+            })
+    });
+    test('200: responds with newly updated produce, ignoring extra properties', () => {
+        const ID = 1;
+        return request(app)
+        .patch(`/api/produce/${ID}`)
+        .send({
+            "price": 3,
+            "hello": 50
+            })
+        .expect(200)
+        .then(({body}) => {
+            console.log(body)
+            expect(body).toEqual(
+                expect.objectContaining({
+                    "name": expect.any(String),
+                    "category": expect.any(String),
+                    "stock": expect.any(Number),
+                    "price": 3,
+                    "unit":expect.any(String),
+                    "description": expect.any(String),
+                    "farm_id": expect.any(Number),
+                    "produce_id": 1,
+                })
+            )
+        })
+    });
+    test('404: valid id but does not exist, respond appropriately', () => {
+        return request(app)
+        .patch('/api/produce/77')
+        .send({price: 1})
+        .expect(404)
+        .then(( {body} ) => {
+            expect(body.msg).toBe("Not Found!")
+        })
+    });
+    test('400: invalid id, respond appropriately', () => {
+        return request(app)
+        .patch('/api/produce/apples')
+        .send({price: 50})
+        .expect(400)
+        .then(({body}) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    });
+    test('400: missing keys', () => {
+        return request(app)
+        .patch('/api/produce/1')
+        .send({})
+        .expect(400)
+        .send(({body}) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    });
+    test('400: invalid key', () => {
+        return request(app)
+        .patch('/api/produce/1')
+        .send({"price": "three pounds"})
+        .expect(400)
+        .send(( {body} ) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    });
+    
+})
+
+describe('DELETE /api/produce/:id', () => {
+    test('204: responds with no content', () => {
+        const ID = 1;
+        return request(app)
+        .delete(`/api/produce/${ID}`)
+        .expect(204)
+    });
+    test('status:400, returns bad request when id is not valid', () => {
+        return request(app)
+        .delete('/api/produce/example')
+        .expect(400)
+        .then((res) => {
+            expect(res.body.msg).toBe('Bad Request!')
+        })
+    });
+    test("status:404, returns not found when produce id is valid but doesn't exist", () => {
+        return request(app)
+        .delete('/api/produce/999')
+        .expect(404)
+        .then((res) => {
+            expect(res.body.msg).toBe('Not Found!')
+        })
+    });
+})
+=======
   describe("PATCH /api/farms/:farm_id", () => {
     test("200: returns updated farm object, with nested object", () => {
         const ID = 1
@@ -555,4 +666,3 @@ describe('POST /api/produce', () => {
         })
     })
 })
-

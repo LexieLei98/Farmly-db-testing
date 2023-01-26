@@ -1,4 +1,4 @@
-[{
+module.exports = [{
   "name": "Potatoes",
   "catergory": "vegetables",
   "stock": 10,
