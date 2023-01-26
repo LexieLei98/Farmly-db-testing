@@ -26,7 +26,7 @@ const getUsers = async (req, res, next) => {
 //Update by ID Method
 const updateUser = async (req, res, next) => {
     try {
-  const userFind = await User.find({farm_id: req.params.id})
+  const userFind = await User.find({user_id: req.params.id})
         if(userFind.length === 0){
             return res.status(404).send({msg: 'Not Found!'})
         }

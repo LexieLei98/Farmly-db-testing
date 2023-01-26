@@ -724,7 +724,7 @@ describe('DELETE /api/user/:user_id', () => {
         .delete('/api/user/1')
         .expect(204)
     })
-
+})
     test('status:404 returns Bad Request when the user id is vaild but no data to this farm', () => {
         return request(app)
         .delete('/api/user/9999')
@@ -740,6 +740,8 @@ describe('DELETE /api/user/:user_id', () => {
         .expect(400)
         .then((res) => {
             expect(res.body.msg).toBe('Bad Request!')
+        })
+    }) 
 
 describe("PATCH /api/users/:user_id", () => {
     test("200: returns an updated user object", () => {

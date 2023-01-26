@@ -46,7 +46,7 @@ const {
 
   const {
     postUser,
-    postUser,
+    updateUser,
     deleteUser,
   } = require('../controllers/user.controller')
 
