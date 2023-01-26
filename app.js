@@ -24,7 +24,9 @@ app.use("/api", FarmRoutes);
 app.use(handleCustomErrors)
 app.use(handleOtherErrors)
 app.use(handle500Error)
+
 app.all('*', (req, res) => {
   res.status(404).json({msg: "Path not found"});
 });
+
 module.exports = app
