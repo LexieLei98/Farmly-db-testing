@@ -389,3 +389,280 @@ describe('DELETE /api/produce/:id', () => {
         })
     });
 })
+=======
+  describe("PATCH /api/farms/:farm_id", () => {
+    test("200: returns updated farm object, with nested object", () => {
+        const ID = 1
+        const updateBody = { 
+            address: {
+                street: "Test Road",
+                town: "Test Town",
+                county: "Testland",
+                postcode: "SW8 2JU",
+                country: "Vietnam"
+            }
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                address: {
+                    street: "Test Road",
+                    town: "Test Town",
+                    county: "Testland",
+                    postcode: "SW8 2JU",
+                    country: "Vietnam"
+                }
+            }))
+        })
+    })
+    test("200: returns updated farm object, patched with 1 nested key value pair", () => {
+        const ID = 1
+        const updateBody = { 
+            address: {
+                street: "Test Road",
+            }
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                address: {
+                    street: "Test Road",
+                }
+            }))
+        })
+    })
+    test("200: returns updated farm object", () => {
+        const ID = 1
+        const updateBody = { 
+            name: "Josh new farm",
+            address: {
+                street: "Test Road",
+                town: "Test Town",
+                county: "Testland",
+                postcode: "SW8 2JU",
+                country: "Vietnam"
+            }
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                name: "Josh new farm",
+                address: {
+                    street: "Test Road",
+                    town: "Test Town",
+                    county: "Testland",
+                    postcode: "SW8 2JU",
+                    country: "Vietnam"
+                }
+            }))
+        })
+    })
+    test("200: returns updated farm object, with 2 key value pairs", () => {
+        const ID = 1
+        const updateBody = { 
+            name: "Josh new farm" 
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                name: "Josh new farm"
+            }))
+        })
+    })
+    test("404: id not found",() => {
+        const ID = 99999
+        const updateBody = { 
+            name: "Josh new farm" 
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(404)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Not Found!")
+        })
+    })
+    test("400: non valid idea not found",() => {
+        const ID = test
+        const updateBody = { 
+            name: "Josh new farm" 
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(400)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    })
+    test("400: invalid key", () => {
+        const ID = 1
+        const updateBody = { 
+            HEHEHEHE: "Josh new farm" 
+        }
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(400)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    })
+    test("400: empty body", () => {
+        const ID = 1
+        const updateBody = {}
+        return request(app)
+        .patch(`/api/farms/${ID}`)
+        .send(updateBody)
+        .expect(400)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    })
+})
+
+
+describe('DELETE /api/farms/:farm_id', () => {
+    test('status:204 responds with an empty response body', () => {
+        return request(app)
+        .delete('/api/farms/1')
+        .expect(204)
+    })
+
+    test('status:404 returns Bad Request when the farm id is vaild but no data to this farm', () => {
+        return request(app)
+        .delete('/api/farms/999')
+        .expect(404)
+        .then((res) => {
+            expect(res.body.msg).toBe('Not Found!')
+        })
+    })
+
+    test('status:400 returns Bad Request when the farm id is invaild', () => {
+        return request(app)
+        .delete('/api/farms/snow')
+        .expect(400)
+        .then((res) => {
+            expect(res.body.msg).toBe('Bad Request!')
+        })
+    })
+})
+
+describe('GET /api/produce', () => {
+    test('status:200, returns the array of farms objects', () => {
+        return request(app)
+        .get('/api/produce')
+        .expect(200)
+        .then(({body}) => {
+            expect(body).toBeInstanceOf(Array)
+            expect(body).toHaveLength(7);
+            body.forEach((produce) => {
+                expect.objectContaining({
+                    name: expect.any(String),
+                    address: expect.any(Object),
+                    description: expect.any(String),
+                    profile_pic: expect.any(String),
+                    rating: expect.any(Array),
+                    produce: expect.any(Array),
+                    produce_id: expect.any(Number),
+                    farm_id: expect.any(Number),
+                })
+            })
+        })
+})
+})
+
+describe('GET /api/produce/:produce_id', () => {
+    test('status:200, returns the object of a specific farm', () => {
+        const PRODUCE_ID = 1;
+        return request(app)
+        .get(`/api/produce/${PRODUCE_ID}`)
+        .expect(200)
+        .then(({body}) => {
+            expect(body[0]).toEqual(
+                expect.objectContaining({
+                    "name":"Pink Lady Apples",
+                    "category": "fruits",
+                    "stock": 10,
+                    "price": 5,
+                    "unit":"300g",
+                    "description": "nice juicy dont miss out",
+                    "farm_id": 1,
+                    "produce_id": 1,
+                })
+     
+        )
+    })
+})
+test('status:400, returns the bad request message when farm id is not vaild', () => {
+    return request(app)
+    .get('/api/produce/snow')
+    .expect(400)
+    .then((res) => {
+        expect(res.body.msg).toBe('Bad Request!')
+    })
+})
+
+test('status:404, returns the bad request message when farm id is vaild but no data for this farm', () => {
+    return request(app)
+    .get('/api/produce/999')
+    .expect(404)
+    .then((res) => {
+        expect(res.body.msg).toBe('Not Found!')
+    })
+})
+}
+)
+describe('POST /api/produce', () => {
+    test('status:201 returns posted produce', () => {
+        const newProduce = {
+            "name":"broccoli",
+            "category": "vegetables",
+            "stock": 12,
+            "price": 1.2,
+            "unit":"300g",
+            "description": "nice veg dont miss out",
+            "farm_id": 2,
+            "produce_id": 8,
+        }
+        return request(app)
+        .post('/api/produce')
+        .send(newProduce)
+        .expect(201)
+        .then(({body}) => {
+            expect(body).toMatchObject({
+                "name":"broccoli",
+                "category": "vegetables",
+                "stock": 12,
+                "price": 1.2,
+                "unit":"300g",
+                "description": "nice veg dont miss out",
+                "farm_id": 2,
+                "produce_id": 8,
+            })
+        })
+    })
+
+    test('status:400 returns Bad Request when missing keys in the body', () => {
+        const newProduce = {};
+        return request(app)
+        .post('/api/produce')
+        .send(newProduce)
+        .expect(400)
+        .then(({body}) => {
+            expect(body.msg).toBe('Bad Request!')
+        })
+    })
+})

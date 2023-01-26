@@ -13,16 +13,29 @@ const postProduce = async(req, res, next) => {
 }
 
 
-//get by ID Method
-const getProduceById = async (req, res, next) =>{
+//get ALL Method
+const getProduce = async (req, res, next) =>{
     try{
-        const produce = await Produce.find({produce_id: req.params.id})
+        const produce = await Produce.find()
         res.status(200).json(produce)
     }
     catch (error) {
         next(error)
     }
+}
 
+//get by ID Method
+const getProduceById = async (req, res, next) =>{
+    try{
+        const produce = await Produce.find({produce_id: req.params.id})
+        if(produce.length ===0){
+            return res.status(404).send({msg:"Not Found!"})
+        }
+        res.status(200).json(produce)
+    }
+    catch (error) {
+        next(error)
+    }
 }
 
 //patch by ID method
@@ -62,4 +75,4 @@ const deleteProduce = async (req, res, next) => {
       }
 }
  
- module.exports = {postProduce, getProduceById, patchProduceById, deleteProduce}
+ module.exports = {postProduce, getProduce, getProduceById, patchProduceById, deleteProduce}

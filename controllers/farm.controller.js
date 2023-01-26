@@ -48,9 +48,20 @@ const getFarm = async (req, res, next) => {
 //Update by ID Method
 const updateFarm = async (req, res, next) => {
     try {
-        const farm = await Farm.findByIdAndUpdate(req.params.id, req.body, {
-          new: true,
-        });
+        const farmFind = await Farm.find({farm_id: req.params.id})
+        if(farmFind.length === 0){
+            return res.status(404).send({msg: 'Not Found!'})
+        }
+        if(!(Object.getOwnPropertyNames(farmFind[0].toJSON())).includes(Object.keys(req.body)[0])) {
+            return res.status(400).send({msg: 'Bad Request!'})
+        }
+
+        const farm = await Farm.findOneAndUpdate(
+            { farm_id: req.params.id },
+            { $set: req.body },
+            { new: true }
+        );
+      
         res.status(200).json(farm);
       } catch (error) {
         next(error)
@@ -60,8 +71,12 @@ const updateFarm = async (req, res, next) => {
 //Delete by ID Method
 const deleteFarm = async (req, res, next) => {
     try {
-        const farm = await Farm.findByIdAndDelete(req.params.id);
-        res.status(200).json(farm);
+        const farm1 = await Farm.find({farm_id: req.params.id})
+        const farm = await Farm.findOneAndDelete({farm_id: req.params.id});
+        if(farm1.length === 0){
+            return res.status(404).send({msg: 'Not Found!'})
+        }
+        res.status(204).json(farm);
       } catch (error) {
         next(error)
       }

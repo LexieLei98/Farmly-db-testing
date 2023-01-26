@@ -25,6 +25,7 @@ const {
   // Produce Routes:
 
   const {
+    getProduce,
     getProduceById,
     postProduce,
     patchProduceById,
@@ -34,9 +35,10 @@ const {
   
   /* Creating the routes for the produce controller. */
 
-  
-  router.get("/produce/:produce_id", getProduceById);
+  router.get('/produce', getProduce)
+  router.get("/produce/:id", getProduceById);
   router.post("/produce", postProduce);
   router.patch("/produce/:id", patchProduceById);
   router.delete("/produce/:id", deleteProduce);
+  
   module.exports = router;
