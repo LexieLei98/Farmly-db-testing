@@ -1,13 +1,3 @@
-// const handle404Errors = (err, req, res, next) => {
-//     if(err.statusCode === 404){
-//         res.status(404).send({msg: "Path not found"})
-//     }
-//     else{
-//         next(err)
-//     }
-// }
-
-
 const handleCustomErrors = (err, req, res, next) => {
     if(err.status){
         res.status(err.status).send({msg: err.msg})
