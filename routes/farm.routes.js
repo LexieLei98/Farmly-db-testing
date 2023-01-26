@@ -46,14 +46,22 @@ const {
 
   const {
     postUser, 
-    getUser
+    getUser,
+    updateUser,
+    deleteUser,
+    getUsers
+
   } = require('../controllers/user.controller')
 
 
   //Creating the routes for the users controllers
 
   router.post('/users', postUser)
+
   router.get('/users/:id', getUser)
 
+  router.patch('/users/:id', updateUser)
+
+  router.delete('/user/:id', deleteUser)
 
   module.exports = router;
