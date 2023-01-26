@@ -449,14 +449,12 @@ describe('DELETE /api/farms/:farm_id', () => {
     })
 })
 
-=======
 describe('GET /api/produce', () => {
     test('status:200, returns the array of farms objects', () => {
         return request(app)
         .get('/api/produce')
         .expect(200)
         .then(({body}) => {
-            console.log(body,"30999")
             expect(body).toBeInstanceOf(Array)
             expect(body).toHaveLength(7);
             body.forEach((produce) => {
