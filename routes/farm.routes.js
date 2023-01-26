@@ -46,6 +46,7 @@ const {
 
   const {
     postUser,
+    postUser,
     deleteUser,
   } = require('../controllers/user.controller')
 
@@ -53,6 +54,7 @@ const {
   //Creating the routes for the users controllers
 
   router.post('/users', postUser)
+  router.patch('/users/:id', updateUser)
 
   router.delete('/user/:id', deleteUser)
   

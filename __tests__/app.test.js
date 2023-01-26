@@ -335,7 +335,6 @@ describe('PATCH /api/produce/:id', () => {
             })
         .expect(200)
         .then(({body}) => {
-            console.log(body)
             expect(body).toEqual(
                 expect.objectContaining({
                     "name": expect.any(String),
@@ -718,6 +717,7 @@ describe('POST /api/users', () => {
     })
 })
 
+
 describe('DELETE /api/user/:user_id', () => {
     test('status:204 responds with an empty response body', () => {
         return request(app)
@@ -740,6 +740,89 @@ describe('DELETE /api/user/:user_id', () => {
         .expect(400)
         .then((res) => {
             expect(res.body.msg).toBe('Bad Request!')
+
+describe("PATCH /api/users/:user_id", () => {
+    test("200: returns an updated user object", () => {
+        const ID = 1
+        const updateBody = { 
+            username: "farmleeUPDATED@gmail.com"
+        }
+        return request(app)
+        .patch(`/api/users/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                username: "farmleeUPDATED@gmail.com"
+            }))
+        })
+    })
+    test("200: returns an updated user object", () => {
+        const ID = 1
+        const updateBody = { 
+            username: "farmleeUPDATED@gmail.com",
+            password: "itsatest"
+        }
+        return request(app)
+        .patch(`/api/users/${ID}`)
+        .send(updateBody)
+        .expect(200)
+        .then(( {body } ) => {
+            expect(body).toEqual(expect.objectContaining({
+                username: "farmleeUPDATED@gmail.com",
+                password: "itsatest"
+            }))
+        })
+    })
+    test("404: id not found", () => {
+        const ID = 4444444
+        const updateBody = { 
+            username: "farmleeUPDATED@gmail.com"
+        }
+        return request(app)
+        .patch(`/api/users/${ID}`)
+        .send(updateBody)
+        .expect(404)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Not Found!")
+        })
+    })
+    test("400: non valid idea not found",() => {
+        const ID = test
+        const updateBody = { 
+            username: "farmleeUPDATED@gmail.com"
+        }
+        return request(app)
+        .patch(`/api/users/${ID}`)
+        .send(updateBody)
+        .expect(400)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    })
+    test("400: invalid key", () => {
+        const ID = 1
+        const updateBody = { 
+            HEHEHEHE: "farmleeUPDATED@gmail.com"
+        }
+        return request(app)
+        .patch(`/api/users/${ID}`)
+        .send(updateBody)
+        .expect(400)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Bad Request!")
+        })
+    })
+    test("400: empty body", () => {
+        const ID = 1
+        const updateBody = {}
+        return request(app)
+        .patch(`/api/users/${ID}`)
+        .send(updateBody)
+        .expect(400)
+        .then(( {body } ) => {
+            expect(body.msg).toBe("Bad Request!")
+
         })
     })
 })
