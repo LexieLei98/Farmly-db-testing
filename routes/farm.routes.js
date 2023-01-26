@@ -45,7 +45,10 @@ const {
   //Users Routes 
 
   const {
-    postUser,
+    postUser, 
+    getUser,
+    updateUser,
+    deleteUser,
     getUsers
   } = require('../controllers/user.controller')
 
@@ -54,6 +57,8 @@ const {
 
   router.post('/users', postUser)
   router.get('/users', getUsers)
+  router.get('/users/:id', getUser)
+  router.patch('/users/:id', updateUser)
+  router.delete('/user/:id', deleteUser)
 
-  
   module.exports = router;
