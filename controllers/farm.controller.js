@@ -60,8 +60,12 @@ const updateFarm = async (req, res, next) => {
 //Delete by ID Method
 const deleteFarm = async (req, res, next) => {
     try {
-        const farm = await Farm.findByIdAndDelete(req.params.id);
-        res.status(200).json(farm);
+        const farm1 = await Farm.find({farm_id: req.params.id})
+        const farm = await Farm.findOneAndDelete({farm_id: req.params.id});
+        if(farm1.length === 0){
+            return res.status(404).send({msg: 'Not Found!'})
+        }
+        res.status(204).json(farm);
       } catch (error) {
         next(error)
       }
