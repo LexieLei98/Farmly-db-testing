@@ -1,9 +1,13 @@
 const express = require("express");
 
+const cors = require('cors');
+
 const FarmRoutes = require("./routes/farm.routes");
 const {handleOtherErrors, handle500Error, handleCustomErrors} = require("./error-handling");
 const app = express();
 
+
+app.use(cors());
 /* A middleware that parses the body of the request and makes it available in the req.body object. */
 app.use(express.json());
 
