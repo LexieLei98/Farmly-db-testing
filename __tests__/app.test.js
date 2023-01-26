@@ -729,7 +729,7 @@ describe('POST /api/users', () => {
     })
 })
 
-describe.only('GET /api/users/:user_id', () => {
+describe('GET /api/users/:user_id', () => {
     test('status: 200, returns the object of a specfic user', () => {
         return request(app)
         .get('/api/users/1')
@@ -781,6 +781,7 @@ describe.only('GET /api/users/:user_id', () => {
         .expect(400)
         .then((res) => {
             expect(res.body.msg).toBe('Bad Request!')
+        })
 
 })
 
@@ -894,4 +895,5 @@ describe("PATCH /api/users/:user_id", () => {
 
         })
     })
+})
 })
