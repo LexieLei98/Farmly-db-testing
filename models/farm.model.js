@@ -26,6 +26,10 @@ const farmSchema = new mongoose.Schema({
         required: true,
         type: Number
     },
+    username:{
+        required: true,
+        type: String
+    },
     farm_id: {
         required: false,
         type: Number
