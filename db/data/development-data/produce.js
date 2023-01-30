@@ -1,89 +1,100 @@
 module.exports = [{
   "name": "Potatoes",
-  "catergory": "vegetables",
+  "category": "vegetables",
   "stock": 10,
   "price": 5,
   "unit": "300g",
   "description": "nice juicy dont miss out",
-  "farm_id": 2
+  "farm_id": 2,
+  "user_id": 4 
 },{
   "name": "Carrots",
-  "catergory": "vegetables",
+  "category": "vegetables",
   "stock": 10,
   "price": 0.7,
   "unit": "300g",
   "description": "nice juicy dont miss out",
-  "farm_id": 2
+  "farm_id": 2,
+  "user_id": 4 
 },{
   "name": "Corns",
-  "catergory": "vegetables",
+  "category": "vegetables",
   "stock": 10,
   "price": 1.5,
   "unit": "300g",
   "description": "nice juicy dont miss out",
-  "farm_id": 3
+  "farm_id": 3,
+  "user_id": 3
 },{
   "name": "Raspberries",
-  "catergory": "fruits",
+  "category": "fruits",
   "stock": 10,
   "price": 4,
   "unit": "box",
   "description": "nice juicy dont miss out",
-  "farm_id": 3
+  "farm_id": 3,
+  "user_id": 3
 },{
   "name": "Rhubarb",
-  "catergory": "vegetables",
+  "category": "vegetables",
   "stock": 10,
   "price": 1.5,
   "unit": "300g",
   "description": "nice juicy dont miss out",
-  "farm_id": 3
+  "farm_id": 3,
+  "user_id": 3
 },{
   "name": "Plums",
-  "catergory": "fruits",
+  "category": "fruits",
   "stock": 9,
   "price": 1.5,
   "unit": "300g",
   "description": "nice juicy dont miss out",
-  "farm_id": 2
+  "farm_id": 2,
+  "user_id": 4 
 },{
   "name": "Cherries",
-  "catergory": "fruits",
+  "category": "fruits",
   "stock": 14,
   "price": 3.5,
   "unit": "300g",
   "description": "nice juicy dont miss out",
-  "farm_id": 4
+  "farm_id": 1,
+  "user_id": 1 
 },{
   "name": "Strawberries",
-  "catergory": "fruits",
+  "category": "fruits",
   "stock": 10,
   "price": 3.5,
   "unit": "300g",
   "description": "nice juicy dont miss out",
-  "farm_id": 4
+  "farm_id": 1,
+  "user_id": 1
 },{
   "name": "Honey",
-  "catergory": "condiments",
+  "category": "condiments",
   "stock": 10,
   "price": 3.5,
   "unit": "bottle",
   "description": "nice dont miss out",
-  "farm_id": 3
+  "farm_id": 3,
+  "user_id": 3
 },{
   "name": "Pumpkins",
-  "catergory": "vegetables",
+  "category": "vegetables",
   "stock": 10,
   "price": 2.45,
   "unit": "300g",
   "description": "nice juicy dont miss out",
-  "farm_id": 4
+  "farm_id": 1,
+  "user_id": 1
 },{
   "name": "Green beans",
-  "catergory": "vegetables",
+  "category": "vegetables",
   "stock": 10,
   "price": 2.45,
   "unit": "300g",
   "description": "nice juicy dont miss out",
-  "farm_id": 2
+  "farm_id": 2,
+  "user_id": 4 
 }]
