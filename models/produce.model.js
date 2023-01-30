@@ -31,6 +31,10 @@ const produceSchema = new mongoose.Schema({
     produce_id: {
         required: false,
         type: Number
+    },
+    produce_pic:{
+        required: false,
+        type: String
     }
 })
 

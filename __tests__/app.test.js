@@ -67,6 +67,7 @@ const seedProduce = [{
     "farm_id": 1,
     "username": "farmlee@gmail.com",
     "produce_id": 1,
+    "produce_pic":"https://assets.sainsburys-groceries.co.uk/gol/6617988/1/640x640.jpg"
 },
 {
     "name":"Granny Smith Apples",
@@ -78,6 +79,7 @@ const seedProduce = [{
     "farm_id": 1,
     "username": "farmlee@gmail.com",
     "produce_id": 2,
+    "produce_pic":"https://www.gardeningknowhow.com/wp-content/uploads/2019/04/granny-smith.jpg"
 },
 {
     "name":"Bananas",
@@ -89,6 +91,7 @@ const seedProduce = [{
     "farm_id": 2,
     "username": "lexie@gmail.com",
     "produce_id": 3,
+    "produce_pic":"http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcTYSv-kmEqeAj6NRr09yPqvo3HGVdDsuw9ZGKRfpl9EtI6zttIJyRv7WSCMK_4eAsrm"
 },
 {
     "name":"Raspberries",
@@ -100,6 +103,7 @@ const seedProduce = [{
     "farm_id": 2,
     "username": "lexie@gmail.com",
     "produce_id": 4,
+    "produce_pic":"http://cdn.shopify.com/s/files/1/1631/1361/products/Raspberries_grande.jpg?v=1486047801"
 },
 {
     "name":"Rhubarb",
@@ -111,6 +115,7 @@ const seedProduce = [{
     "farm_id": 3,
     "username": "andrea@gmail.com",
     "produce_id": 5,
+    "produce_pic":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVMgzsWpIAmwMt-_K7pe6p9eAx4TcbGbLylg&usqp=CAU"
 },
 {
     "name":"Plums",
@@ -122,6 +127,7 @@ const seedProduce = [{
     "farm_id": 3,
     "username": "andrea@gmail.com",
     "produce_id": 6,
+    "produce_pic":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbtPKhnulYhR4rutqfXEiY1WyQx53g9zMt4w&usqp=CAU"
 },
 {
     "name":"Cherries",
@@ -133,6 +139,7 @@ const seedProduce = [{
     "farm_id": 3,
     "username": "andrea@gmail.com",
     "produce_id": 7,
+    "produce_pic":"https://media.riverford.co.uk/images/cherries-1500x1000-405bee19bc0a671a4460f73c04dbcbd9.jpg"
 }]
     
 
@@ -337,7 +344,8 @@ describe('PATCH /api/produce/:id', () => {
                     "description": expect.any(String),
                     "farm_id": expect.any(Number),
                     "produce_id": 1,
-                    "username": expect.any(String)
+                    "username": expect.any(String),
+                    "produce_pic": expect.any(String)
                 })
             )
             })
@@ -362,7 +370,8 @@ describe('PATCH /api/produce/:id', () => {
                     "description": expect.any(String),
                     "farm_id": expect.any(Number),
                     "produce_id": 1,
-                    "username": expect.any(String)
+                    "username": expect.any(String),
+                    "produce_pic": expect.any(String)
                 })
             )
         })
@@ -619,7 +628,8 @@ describe('GET /api/produce', () => {
                     produce: expect.any(Array),
                     produce_id: expect.any(Number),
                     farm_id: expect.any(Number),
-                    username: expect.any(String)
+                    username: expect.any(String),
+                    produce_pic: expect.any(String)
                 })
             })
         })
@@ -643,7 +653,8 @@ describe('GET /api/produce/:produce_id', () => {
                     "description": "nice juicy dont miss out",
                     "farm_id": 1,
                     "produce_id": 1,
-                    "username": "farmlee@gmail.com"
+                    "username": "farmlee@gmail.com",
+                    "produce_pic":"https://assets.sainsburys-groceries.co.uk/gol/6617988/1/640x640.jpg"
                 })
      
         )
@@ -679,7 +690,8 @@ describe('POST /api/produce', () => {
             "description": "nice veg dont miss out",
             "farm_id": 2,
             "produce_id": 8,
-            "username": "lexie@gmail.com"
+            "username": "lexie@gmail.com",
+            "produce_pic":"https://cdn.britannica.com/25/78225-050-1781F6B7/broccoli-florets.jpg"
         }
         return request(app)
         .post('/api/produce')
@@ -695,7 +707,8 @@ describe('POST /api/produce', () => {
                 "description": "nice veg dont miss out",
                 "farm_id": 2,
                 "produce_id": 8,
-                "username": "lexie@gmail.com"
+                "username": "lexie@gmail.com",
+                "produce_pic":"https://cdn.britannica.com/25/78225-050-1781F6B7/broccoli-florets.jpg"
             })
         })
     })
