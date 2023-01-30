@@ -6,7 +6,7 @@ module.exports = [{
   "unit": "300g",
   "description": "nice juicy dont miss out",
   "farm_id": 2,
-  "user_id": 4 
+  "username":"lexie@gmail.com"
 },{
   "name": "Carrots",
   "category": "vegetables",
@@ -15,7 +15,7 @@ module.exports = [{
   "unit": "300g",
   "description": "nice juicy dont miss out",
   "farm_id": 2,
-  "user_id": 4 
+  "username":"lexie@gmail.com"
 },{
   "name": "Corns",
   "category": "vegetables",
@@ -24,7 +24,7 @@ module.exports = [{
   "unit": "300g",
   "description": "nice juicy dont miss out",
   "farm_id": 3,
-  "user_id": 3
+  "username":"andrea@gmail.com"
 },{
   "name": "Raspberries",
   "category": "fruits",
@@ -33,7 +33,7 @@ module.exports = [{
   "unit": "box",
   "description": "nice juicy dont miss out",
   "farm_id": 3,
-  "user_id": 3
+  "username":"andrea@gmail.com"
 },{
   "name": "Rhubarb",
   "category": "vegetables",
@@ -42,7 +42,7 @@ module.exports = [{
   "unit": "300g",
   "description": "nice juicy dont miss out",
   "farm_id": 3,
-  "user_id": 3
+  "username":"andrea@gmail.com"
 },{
   "name": "Plums",
   "category": "fruits",
@@ -51,7 +51,7 @@ module.exports = [{
   "unit": "300g",
   "description": "nice juicy dont miss out",
   "farm_id": 2,
-  "user_id": 4 
+  "username":"lexie@gmail.com"
 },{
   "name": "Cherries",
   "category": "fruits",
@@ -60,7 +60,8 @@ module.exports = [{
   "unit": "300g",
   "description": "nice juicy dont miss out",
   "farm_id": 1,
-  "user_id": 1 
+  "username":"farmlee@gmail.com"
+
 },{
   "name": "Strawberries",
   "category": "fruits",
@@ -69,7 +70,7 @@ module.exports = [{
   "unit": "300g",
   "description": "nice juicy dont miss out",
   "farm_id": 1,
-  "user_id": 1
+  "username":"farmlee@gmail.com"
 },{
   "name": "Honey",
   "category": "condiments",
@@ -78,7 +79,7 @@ module.exports = [{
   "unit": "bottle",
   "description": "nice dont miss out",
   "farm_id": 3,
-  "user_id": 3
+  "username":"andrea@gmail.com"
 },{
   "name": "Pumpkins",
   "category": "vegetables",
@@ -87,7 +88,7 @@ module.exports = [{
   "unit": "300g",
   "description": "nice juicy dont miss out",
   "farm_id": 1,
-  "user_id": 1
+  "username":"farmlee@gmail.com"
 },{
   "name": "Green beans",
   "category": "vegetables",
@@ -96,5 +97,5 @@ module.exports = [{
   "unit": "300g",
   "description": "nice juicy dont miss out",
   "farm_id": 2,
-  "user_id": 4 
+  "username":"lexie@gmail.com"
 }]

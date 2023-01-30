@@ -24,9 +24,9 @@ const produceSchema = new mongoose.Schema({
         required: true,
         type: Number
     },
-    user_id: {
+    username: {
         required: true,
-        type: Number
+        type: String
     },
     produce_id: {
         required: false,

@@ -65,7 +65,7 @@ const seedProduce = [{
     "unit":"300g",
     "description": "nice juicy dont miss out",
     "farm_id": 1,
-    "user_id": 1,
+    "username": "farmlee@gmail.com",
     "produce_id": 1,
 },
 {
@@ -76,7 +76,7 @@ const seedProduce = [{
     "unit":"300g",
     "description": "nice juicy dont miss out",
     "farm_id": 1,
-    "user_id": 1,
+    "username": "farmlee@gmail.com",
     "produce_id": 2,
 },
 {
@@ -87,7 +87,7 @@ const seedProduce = [{
     "unit":"300g",
     "description": "nice juicy dont miss out",
     "farm_id": 2,
-    "user_id": 1,
+    "username": "lexie@gmail.com",
     "produce_id": 3,
 },
 {
@@ -98,7 +98,7 @@ const seedProduce = [{
     "unit":"box",
     "description": "nice juicy dont miss out",
     "farm_id": 2,
-    "user_id": 1,
+    "username": "lexie@gmail.com",
     "produce_id": 4,
 },
 {
@@ -109,7 +109,7 @@ const seedProduce = [{
     "unit":"300g",
     "description": "nice juicy dont miss out",
     "farm_id": 3,
-    "user_id": 1,
+    "username": "andrea@gmail.com",
     "produce_id": 5,
 },
 {
@@ -120,7 +120,7 @@ const seedProduce = [{
     "unit":"300g",
     "description": "nice juicy dont miss out",
     "farm_id": 3,
-    "user_id": 1,
+    "username": "andrea@gmail.com",
     "produce_id": 6,
 },
 {
@@ -131,7 +131,7 @@ const seedProduce = [{
     "unit":"300g",
     "description": "nice juicy dont miss out",
     "farm_id": 3,
-    "user_id": 1,
+    "username": "andrea@gmail.com",
     "produce_id": 7,
 }]
     
@@ -337,7 +337,7 @@ describe('PATCH /api/produce/:id', () => {
                     "description": expect.any(String),
                     "farm_id": expect.any(Number),
                     "produce_id": 1,
-                    "user_id": expect.any(Number)
+                    "username": expect.any(String)
                 })
             )
             })
@@ -362,7 +362,7 @@ describe('PATCH /api/produce/:id', () => {
                     "description": expect.any(String),
                     "farm_id": expect.any(Number),
                     "produce_id": 1,
-                    "user_id": expect.any(Number)
+                    "username": expect.any(String)
                 })
             )
         })
@@ -619,7 +619,7 @@ describe('GET /api/produce', () => {
                     produce: expect.any(Array),
                     produce_id: expect.any(Number),
                     farm_id: expect.any(Number),
-                    user_id: expect.any(Number)
+                    username: expect.any(String)
                 })
             })
         })
@@ -643,7 +643,7 @@ describe('GET /api/produce/:produce_id', () => {
                     "description": "nice juicy dont miss out",
                     "farm_id": 1,
                     "produce_id": 1,
-                    "user_id": 1
+                    "username": "farmlee@gmail.com"
                 })
      
         )
@@ -679,7 +679,7 @@ describe('POST /api/produce', () => {
             "description": "nice veg dont miss out",
             "farm_id": 2,
             "produce_id": 8,
-            "user_id": 4
+            "username": "lexie@gmail.com"
         }
         return request(app)
         .post('/api/produce')
@@ -695,7 +695,7 @@ describe('POST /api/produce', () => {
                 "description": "nice veg dont miss out",
                 "farm_id": 2,
                 "produce_id": 8,
-                "user_id": 4
+                "username": "lexie@gmail.com"
             })
         })
     })
