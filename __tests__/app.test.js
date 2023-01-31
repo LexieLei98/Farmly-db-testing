@@ -141,10 +141,10 @@ const seedProduce = [{
     "produce_id": 7,
     "produce_pic":"https://media.riverford.co.uk/images/cherries-1500x1000-405bee19bc0a671a4460f73c04dbcbd9.jpg"
 }]
-    
 
 const seedUsers = [{
-      "username": 'farmlee@gmail.com',
+      "username":"farmlee",
+      "email":'farmlee@gmail.com',
       "postcode":"E14 5GL",
       "type": "Farmer",
       "profile_pic":"https://static.vecteezy.com/system/resources/previews/011/030/440/original/carrot-cartoon-character-png.png",
@@ -152,7 +152,8 @@ const seedUsers = [{
       "user_id": 1
     },
     {
-        "username": 'userlee@gmail.com',
+        "username": "userlee",
+        "email":'userlee@gmail.com',
         "postcode":"SW8 2JU",
         "type": "User",
         "profile_pic":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -728,7 +729,8 @@ describe('POST /api/produce', () => {
 describe('POST /api/users', () => {
     test('status 201 returns posted user', () => {
         const newUser = {
-            "username": 'farmlee@gmail.com',
+            "username": "farmlee",
+            "email":'farmlee@gmail.com',
             "postcode":"E14 5GL",
             "type": "Farmer",
             "profile_pic":"https://static.vecteezy.com/system/resources/previews/011/030/440/original/carrot-cartoon-character-png.png",
@@ -741,7 +743,8 @@ describe('POST /api/users', () => {
         .expect(201)
         .then(({body}) => {
             expect(body).toMatchObject({
-                "username": 'farmlee@gmail.com',
+                "username": "farmlee",
+                "email":'farmlee@gmail.com',
                 "postcode":"E14 5GL",
                 "type": "Farmer",
                 "profile_pic":"https://static.vecteezy.com/system/resources/previews/011/030/440/original/carrot-cartoon-character-png.png",
@@ -763,6 +766,7 @@ describe('GET /api/users', () => {
             body.forEach((user) => {
                 expect.objectContaining({
                     username: expect.any(String),
+                    email: expect.any(String),
                     postcode: expect.any(String),
                     type: expect.any(String),
                     profile_pic: expect.any(String),
@@ -795,7 +799,8 @@ describe('GET /api/users/:user_id', () => {
         .then(({body}) => {
             expect(body).toEqual(
                 expect.objectContaining({
-                    "username": 'farmlee@gmail.com',
+                    "username": "farmlee",
+                    "email":'farmlee@gmail.com',
                     "postcode":"E14 5GL",
                     "type": "Farmer",
                     "profile_pic":"https://static.vecteezy.com/system/resources/previews/011/030/440/original/carrot-cartoon-character-png.png",
@@ -813,7 +818,8 @@ describe('GET /api/users/:user_id', () => {
         .then(({body}) => {
             expect(body).toEqual(
                 expect.objectContaining({
-                    "username": 'userlee@gmail.com',
+                    "username": "userlee",
+                    "email":'userlee@gmail.com',
                     "postcode":"SW8 2JU",
                     "type": "User",
                     "profile_pic":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -873,7 +879,7 @@ describe("PATCH /api/users/:user_id", () => {
     test("200: returns an updated user object", () => {
         const ID = 1
         const updateBody = { 
-            username: "farmleeUPDATED@gmail.com"
+            email: "farmleeUPDATED@gmail.com"
         }
         return request(app)
         .patch(`/api/users/${ID}`)
@@ -881,14 +887,14 @@ describe("PATCH /api/users/:user_id", () => {
         .expect(200)
         .then(( {body } ) => {
             expect(body).toEqual(expect.objectContaining({
-                username: "farmleeUPDATED@gmail.com"
+                email: "farmleeUPDATED@gmail.com"
             }))
         })
     })
     test("200: returns an updated user object", () => {
         const ID = 1
         const updateBody = { 
-            username: "farmleeUPDATED@gmail.com",
+            email: "farmleeUPDATED@gmail.com",
             password: "itsatest"
         }
         return request(app)
@@ -897,7 +903,7 @@ describe("PATCH /api/users/:user_id", () => {
         .expect(200)
         .then(( {body } ) => {
             expect(body).toEqual(expect.objectContaining({
-                username: "farmleeUPDATED@gmail.com",
+                email: "farmleeUPDATED@gmail.com",
                 password: "itsatest"
             }))
         })
@@ -905,7 +911,7 @@ describe("PATCH /api/users/:user_id", () => {
     test("404: id not found", () => {
         const ID = 4444444
         const updateBody = { 
-            username: "farmleeUPDATED@gmail.com"
+            email: "farmleeUPDATED@gmail.com"
         }
         return request(app)
         .patch(`/api/users/${ID}`)
@@ -918,7 +924,7 @@ describe("PATCH /api/users/:user_id", () => {
     test("400: non valid idea not found",() => {
         const ID = test
         const updateBody = { 
-            username: "farmleeUPDATED@gmail.com"
+            email: "farmleeUPDATED@gmail.com"
         }
         return request(app)
         .patch(`/api/users/${ID}`)
