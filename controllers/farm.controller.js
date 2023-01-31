@@ -23,8 +23,8 @@ const postFarm = async(req, res, next) => {
 //Get all Method
 const getFarms = async (req, res, next) => {
     try{
-        const data = await Farm.find().sort( { "distance_from_location": 1, "_id": 1 } );
-        res.json(data)
+        const data = await Farm.find()
+        res.status(200).json(data)
     }
     catch(error){
         next(error)
